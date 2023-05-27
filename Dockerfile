@@ -1,10 +1,9 @@
-ARG PAPER_FILE
-
 FROM docker.io/bellsoft/liberica-runtime-container:jdk-17-slim-musl
 
-RUN mkdir -p /srv || mkdir /minecraft
+RUN mkdir -p /srv /minecraft
+COPY paper.jar /srv/paper.jar
+
 ENV pwd=/minecraft
+VOLUME [ "/minecraft" ]
 
-COPY $PAPER_FILE /srv/paper.jar
-
-ENTRYPOINT [ "java" "-jar" "/srv/paper.jar" "nogui"]
+ENTRYPOINT [ "java","-jar","/srv/paper.jar","nogui"]
