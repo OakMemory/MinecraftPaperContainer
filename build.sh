@@ -34,10 +34,15 @@ for version in "${MINECRAFT_VERSIONS[@]}"; do
     container_tag=papermc:$version-$build_id
     echo "Building container tagged as $container_tag"
 
-    if (docker build -q -t "$container_tag" . >>/dev/null) && (docker build -q -t "papermc:$version-latest" . >>/dev/null); then
+    if (docker build -q -t "suibing/papermc:$container_tag" . >>/dev/null) && (docker build -q -t "suibing/papermc:$version-latest" . >>/dev/null); then
         echo "Build container successful"
     else
         echo "Failed to build container"
     fi
     rm paper.jar
+
+    echo "Publish image to DockerHub..."
+    docker push "suibing/papermc:$container_tag"
+    docker push "suibing/papermc:$version-latest"
+
 done
