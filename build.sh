@@ -28,11 +28,11 @@ for version in "${MINECRAFT_VERSIONS[@]}"; do
         echo "File $build_file exists"
     else
         echo "Downloading jar from $build_url"
-        wget -q "$build_url" -O "tmp/$build_file"
+        wget -q "$build_url" -O "$build_file"
     fi
 
     container_tag=papermc:$version-$build_id
     echo "Building container tagged as $container_tag"
 
-    docker build -t "$container_tag" . --build-arg PAPER_FILE="tmp/$build_file"
+    docker build -t "$container_tag" . --build-arg PAPER_FILE="$build_file"
 done
