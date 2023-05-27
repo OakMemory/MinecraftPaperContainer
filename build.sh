@@ -7,7 +7,6 @@ MINECRAFT_VERSIONS=(
     "1.19.1"
     "1.18.2"
     "1.18.1"
-    "1.17.1"
 )
 
 mkdir tmp
@@ -35,8 +34,10 @@ for version in "${MINECRAFT_VERSIONS[@]}"; do
     container_tag=papermc:$version-$build_id
     echo "Building container tagged as $container_tag"
 
-    docker build -q -t "$container_tag" . >>/dev/null
-    docker build -q -t "papermc:$version-latest" . >>/dev/null
-
+    if (docker build -q -t "$container_tag" . >>/dev/null) && (docker build -q -t "papermc:$version-latest" . >>/dev/null); then
+        echo "Build container successful"
+    else
+        echo "Failed to build container"
+    fi
     rm paper.jar
 done

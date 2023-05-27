@@ -6,4 +6,4 @@ COPY paper.jar /srv/paper.jar
 ENV pwd=/minecraft
 VOLUME [ "/minecraft" ]
 
-ENTRYPOINT [ "java","-jar","/srv/paper.jar","nogui"]
+ENTRYPOINT [ "java","-XX:+UnlockExperimentalVMOptions","-XX:+DisableExplicitGC","-XX:-UseG1GC","-XX:+UseZGC","-jar","/srv/paper.jar","nogui"]
