@@ -31,10 +31,11 @@ for version in "${MINECRAFT_VERSIONS[@]}"; do
 
     cp "tmp/$build_file" paper.jar
 
-    container_tag=papermc:$version-$build_id
+    container_tag=$version-$build_id
     echo "Building container tagged as $container_tag"
+    echo "Building container tagged as $version-latest"
 
-    if (docker build -q -t "suibing/papermc:$container_tag" . >>/dev/null) && (docker build -q -t "suibing/papermc:$version-latest" . >>/dev/null); then
+    if (docker build -q -t "suibing/papermc:$container_tag" .) && (docker build -q -t "suibing/papermc:$version-latest" .); then
         echo "Build container successful"
     else
         echo "Failed to build container"
