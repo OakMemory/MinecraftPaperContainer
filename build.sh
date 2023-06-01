@@ -18,8 +18,8 @@ for version in "${MINECRAFT_VERSIONS[@]}"; do
     version_json=$(curl -s -X 'GET' \
         "https://api.papermc.io/v2/projects/paper/versions/$version/builds" \
         -H 'accept: application/json')
-    build_id=$(echo "$version_json" | jq -r '.builds[0].build')
-    build_file=$(echo "$version_json" | jq -r '.builds[0].downloads.application.name')
+    build_id=$(echo "$version_json" | jq -r '.builds[-1].build')
+    build_file=$(echo "$version_json" | jq -r '.builds[-1].downloads.application.name')
     build_url="https://api.papermc.io/v2/projects/paper/versions/$version/builds/$build_id/downloads/$build_file"
 
     if [ -f "tmp/$build_file" ]; then
