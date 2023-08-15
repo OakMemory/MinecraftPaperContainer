@@ -44,7 +44,7 @@ for version in "${MINECRAFT_VERSIONS[@]}"; do
     else
         echo "Failed to build container"
     fi
-    rm paper.jar
+    rm ./paper/paper.jar
 
     echo "Publish image to DockerHub..."
     docker push "suibing/papermc:$container_tag"
@@ -85,7 +85,7 @@ for version in "${velocity_versions[@]}"; do
     else
         echo "Failed to build container"
     fi
-    rm velocity.jar
+    rm ./velocity/velocity.jar
 
     echo "Publish image to DockerHub..."
     docker push "suibing/velocity:$container_tag"
