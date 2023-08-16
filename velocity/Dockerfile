@@ -1,5 +1,8 @@
 FROM docker.io/amazoncorretto:17-alpine
 
+ENV JVM_ARGS=""
+ENV PROGRAM_ARGS=""
+
 RUN apk update && apk add screen
 
 RUN mkdir -p /srv
@@ -10,4 +13,4 @@ WORKDIR /velocity
 VOLUME [ "/velocity" ]
 WORKDIR /velocity
 
-ENTRYPOINT ["screen","-S","minecraft","java","-XX:+UnlockExperimentalVMOptions","-XX:+DisableExplicitGC","-XX:-UseG1GC","-XX:+UseZGC","-jar","/srv/velocity.jar"]
+ENTRYPOINT ["screen","-S","minecraft","java","-XX:+UnlockExperimentalVMOptions","-XX:+DisableExplicitGC","-XX:-UseG1GC","-XX:+UseZGC",${JVM_ARGS},"-jar","/srv/velocity.jar",${PROGRAM_ARGS}]
