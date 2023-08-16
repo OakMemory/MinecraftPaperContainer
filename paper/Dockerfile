@@ -20,4 +20,4 @@ WORKDIR /minecraft
 VOLUME [ "/minecraft" ]
 WORKDIR /minecraft
 
-ENTRYPOINT ["/start.sh"]
+ENTRYPOINT ["/bin/sh","-c","/start.sh"]
