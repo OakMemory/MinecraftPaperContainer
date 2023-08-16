@@ -3,7 +3,7 @@ FROM docker.io/amazoncorretto:17-alpine
 ENV JVM_ARGS=""
 ENV PROGRAM_ARGS=""
 
-RUN apk update && apk add screen
+RUN apk update && apk add tmux
 
 RUN mkdir -p /srv
 COPY velocity.jar /srv/velocity.jar
