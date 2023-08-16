@@ -10,4 +10,4 @@ WORKDIR /minecraft
 VOLUME [ "/minecraft" ]
 WORKDIR /minecraft
 
-ENTRYPOINT ["screen","-dmS","minecraft","java","-XX:+UnlockExperimentalVMOptions","-XX:+DisableExplicitGC","-XX:-UseG1GC","-XX:+UseZGC","-jar","/srv/paper.jar","nogui"]
+ENTRYPOINT ["screen","-S","minecraft","java","-XX:+UnlockExperimentalVMOptions","-XX:+DisableExplicitGC","-XX:-UseG1GC","-XX:+UseZGC","-jar","/srv/paper.jar","nogui"]

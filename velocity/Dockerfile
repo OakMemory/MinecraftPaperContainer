@@ -10,4 +10,4 @@ WORKDIR /velocity
 VOLUME [ "/velocity" ]
 WORKDIR /velocity
 
-ENTRYPOINT ["screen","-dmS","minecraft","java","-XX:+UnlockExperimentalVMOptions","-XX:+DisableExplicitGC","-XX:-UseG1GC","-XX:+UseZGC","-jar","/srv/velocity.jar"]
+ENTRYPOINT ["screen","-S","minecraft","java","-XX:+UnlockExperimentalVMOptions","-XX:+DisableExplicitGC","-XX:-UseG1GC","-XX:+UseZGC","-jar","/srv/velocity.jar"]
